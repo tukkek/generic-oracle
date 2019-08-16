@@ -1,0 +1,39 @@
+#map td{
+  border:1px solid black;
+  width:calc(100vh / 8);
+  height:calc(100vh / 8);
+  text-align:center;
+  padding:.5em;
+}
+#map{
+  border-collapse: collapse;
+  display:inline-block;
+}
+.detail{
+  display:inline-block;
+  margin:.5em;
+  margin-top:0;
+  border:1px dotted black;
+  padding:.5em;
+  vertical-align: top;
+}
+.detail .title{
+  font-weight:bold;
+  margin-bottom:.5em;
+}
+#contentsummary{
+  margin-top:2em;
+  font-size:small;
+  text-align:center;
+  font-style:italic;
+}
+#controls{
+  border-bottom:solid 1px black;
+  padding:.5em; 
+  margin-bottom:.5em; 
+  background:lightgray;
+}
+#controls input{
+  width:5em;
+  text-align:center;
+}

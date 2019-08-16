@@ -1,0 +1,3 @@
+Word lists
+======
+* Corpore (see LICENSE.txt ar the src/words directory)

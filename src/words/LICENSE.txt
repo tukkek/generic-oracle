@@ -1,0 +1,3 @@
+These files originate from the Corpora project and are distributed through a Creative Commons 0 license. See more info and a link to the full license text at the eb address below. Big thanks to Darius Kazemi!
+
+https://github.com/dariusk/corpora

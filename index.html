@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Setting generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <script type="module">
+      import {generate} from './src/generator.js';
+      import {loadwords,adjectives,nouns,adverbs,verbs,interpretations} from './src/words.js';
+      window.regenerate=async function(){
+        await loadwords()
+        generate()
+        document.querySelector('#contentsummary #adjectives').innerHTML=adjectives.length
+        document.querySelector('#contentsummary #nouns').innerHTML=nouns.length
+        document.querySelector('#contentsummary #adverbs').innerHTML=adverbs.length
+        document.querySelector('#contentsummary #verbs').innerHTML=verbs.length
+        document.querySelector('#contentsummary #interpretations').innerHTML=interpretations.length
+      }
+    </script>
+    <template id='detail'>
+      <div class='detail'>
+        <div class='title'></div>
+        <ul class='description'></ul>
+      </div>
+    </template>
+  </head>
+  <body onload='regenerate();'>
+    <div id='controls'>
+      Generate <input type='number'  value='2' id='amount'>d<input type='number' value='4' id='dice'> elements on a <input type='number' value='4' id='rows'> by <input type='number' value='4' id='columns'> grid.
+      <button id='generate' onclick='regenerate();'>Generate new</button>
+    </div>
+    <div>
+      <table id='map'></table>
+      <span id='details'></span>
+    </div>
+    <div id='contentsummary'>This generator contains <span id='adjectives'></span> adjectives, <span id='nouns'></span> nouns, <span id='adverbs'></span> adverbs, <span id='verbs'></span> verbs and <span id='interpretations'></span> interpretations. <a href='https://github.com/tukkek/generic-oracle' target='_blank'>Read more!</a></div>
+  </body>
+</html>
