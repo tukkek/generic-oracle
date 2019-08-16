@@ -6,6 +6,24 @@ This is a generic, customizable grid-based oracle ("random generator") with a la
 
 A brief introduction to the concept of oracles themselves: "random generators" (like random character generators, dungeon generators, yes/no/but/and oracles) are a tool used in the context of writing to provide inspiration while writing a story, module, sourcebook and also in the context of roleplyaing games - either for a narrator who needs some help while preparing a game or during a session when you need to come up with something on the fly but inspiration has either run dry or started to get repetitive. They're also used during solo-roleplaying to "emulate" the improvising, unpredictable and dynamic role of a real narrator.
 
+## How to use the oracle?
+
+First off, you can and should use this oracle in the way you feel best. It's generic and it's freeform, make it yours and fiddle with the settings to your taste. This section is only a primer for those who have never used an oracle before or are a bit lost coming from traditional oracles.
+
+There are two parts to this oracle:
+
+**Detail cards**: detail cards describe the what and who. If you come to the oracle with the question "which patrons are in this bar" then each card will represent a notable patron. For a "what does this city look like" then each card may represent a building in the city. If it's a big city you may want to have each card represent a district and then generate a new result set for each of those districts to describe notable buildings in them.
+
+Each card is summarized with a title, in bold, in the adjective-noun form, so things like "happy traveller" or "strong church". You will have to interpret what this means for your current context, so let your imagination and intruition decide - if nothing fits, you cna try generating a new set of cards instead or discard the ones you can't figure out and keep the ones you can.
+
+Besides the title, each card containas a number of adjectives to help you flesh out that particular item. A goal is also provided and perhaps a short generic sentence that reads like a horoscope or tarot divination. These are all optional and menat to help you, not bind you. Strike out anything you don't like, keep what you like and add other details on your own as you flesh it out.
+
+**The grid**: each of the card titles is placed on a two-dimensional grid, which can also be used to inform the generated results or completely ignored. If you're using the oracle to generate a world, city or location, the grid may represent a map, with up being north. If you're generating a group of people, the people who are closer together on the grid may represent a group of friends or allies, while the results which are far apart represent enemies. If you're generating quests, the quests on the right of the grid may be lawful and honorable ones while the ones on the left may be crime opportunites or morally challenging...
+
+**The options**: there are a few options to make your grid bigger or smaller, with more or less results in it. Although the defaults are decent for most scenarios, you can experiment and decide for yourself what's best for what type of oracle. For example, if you want a "story generator", you can turn the grid into a one-row affair with all cells filled and then read it left-to-right as different "chapters" on a linear story.
+
+One particular note is the "generate 2d4 elements" setting. For those unfamiliar with this notation, it means roll 2 dice, each of them being 4-sided. So if you setup 1d6, it means roll one traditional six-sided die, 2d6 would be 2 six-sided die and so on. The dice are then rolled "behind the curtain" and all results added up to generate the final count each time you press "generate". If you want exactly 5 results every time, write it as 5d1 - or 10d1 for 10 results every time. If you want between 1 and 10 results, write 1d10 or 2d10 for between 2 and 20 results. 1d100 would be between 1 and 100, 1d30 between 1 and 30, etc...
+
 ## Why a grid-based, online, generic oracle?
 
 A few things bother me with traditional oracles, which I've read plenty of recently and I thought could be improved upon. I'll present those as the "advantages" of using a tool like this over a traditional table-based oracle.
