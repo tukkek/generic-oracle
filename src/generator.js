@@ -1,8 +1,8 @@
 import {roll,rolldice,pick,chancein} from './rpg.js'
-import {adjectives,nouns,adverbs,verbs,interpretations} from './words.js'
+import {adjectives,nouns,adverbs,verbs,details} from './words.js'
 
-var rows
-var columns
+var rows=false
+var columns=false
 var units=[]
 
 function capitalize(s){return s[0].toUpperCase()+s.substring(1).toLowerCase()}
@@ -13,7 +13,7 @@ class Unit{
     this.details=[]
     let ndetails=roll(1,4)
     while(this.details.length<ndetails) 
-      this.details.push(capitalize(pick(chancein(10)?interpretations:adjectives)))
+      this.details.push(capitalize(pick(details)))
     let goal=pick(verbs)+' '+pick(nouns)
     if(chancein(4)) goal=pick(adverbs)+' '+goal
     this.details.push('Goal: '+goal.toLowerCase())
@@ -38,34 +38,10 @@ function refresh(){
   units.splice(0);
 }
 
-export function generate(){
-  refresh()
-  let interesting=rolldice(getoption('amount'),getoption('dice'))
-  if(interesting>rows*columns) interesting=rows*columns
-  let occupied=new Set()
-  let map=document.querySelector('#map')
-  //for(let i=0;i<100;i++) alert(roll(1,4))
-  while(occupied.size<interesting){
-    let x=roll(1,rows)-1
-    let y=roll(1,columns)-1
-    /*alert(rows)
-    alert(x)
-    alert(columns)
-    alert(y)*/
-    if(occupied.has(x+':'+y)) continue
-    occupied.add(x+':'+y)
-    let u=new Unit()
-    units.push(u)
-    map.querySelectorAll('tr')[x].querySelectorAll('td')[y].innerHTML=u.title
-  }
+function drawcards(){
   let details=document.querySelector('#details')
   let template=document.querySelector('template#detail')
-  units.sort(function(a,b){
-    if (a.title>b.title) return 1
-    if (b.title<a.title) return -1
-    return 0;
-  })
-  for(let i=0;i<interesting;i++){
+  for(let i=0;i<units.length;i++){
     let detail=document.importNode(template.content, true)
     let u=units[i]
     detail.querySelector('.title').innerHTML=(i+1)+'. '+u.title
@@ -77,4 +53,27 @@ export function generate(){
     }
     details.appendChild(detail)
   }
+}
+
+export function generate(){
+  refresh()
+  let interesting=rolldice(getoption('amount'),getoption('dice'))
+  if(interesting>rows*columns) interesting=rows*columns
+  let occupied=new Set()
+  let map=document.querySelector('#map')
+  while(occupied.size<interesting){
+    let x=roll(1,rows)-1
+    let y=roll(1,columns)-1
+    if(occupied.has(x+':'+y)) continue
+    occupied.add(x+':'+y)
+    let u=new Unit()
+    units.push(u)
+    map.querySelectorAll('tr')[x].querySelectorAll('td')[y].innerHTML=u.title
+  }
+  units.sort(function(a,b){
+    if (a.title>b.title) return 1
+    if (b.title<a.title) return -1
+    return 0;
+  })
+  drawcards()
 }

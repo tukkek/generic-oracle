@@ -3,10 +3,32 @@ export var adverbs=[]
 export var verbs=[]
 export var nouns=[]
 export var interpretations=[]
+export var emoji=[]
+export var details=[]
 
-async function get(file){
-  let json=await fetch('src/words/'+file)
+async function get(file,relative=true){
+  if(relative) file='src/words/'+file;
+  let json=await fetch(file)
   return await json.json()
+}
+
+async function loademoji(){
+  let emojilib=await get('https://cdn.jsdelivr.net/npm/emojilib@2.4.0/emojis.json',false)
+  for(let e in emojilib){
+    let c=emojilib[e]['char']
+    let keywords=emojilib[e]['keywords']
+    keywords.push(e)
+    for(let k of keywords) {
+      while(k.indexOf('_')>=0) k=k.replace('_',' ')
+      emoji.push(`<span class='emoji'>${c}</span> (${k})`)
+    }
+  }
+}
+
+function loaddetails(){
+  details.push(...adjectives)
+  details.push(...interpretations)
+  details.push(...emoji)
 }
 
 export async function loadwords(){
@@ -23,7 +45,6 @@ export async function loadwords(){
   nouns.push(...(await get('artifact.json'))['artifacts'].map(s=>s['name']))
   nouns.push(...(await get('passages.json'))['passages'])
   nouns.push(...(await get('rooms.json'))['rooms'])
-  //nouns.push(...(await get('fruits.json'))['fruits'])
   nouns.push(...(await get('environmental_hazards.json'))['entries'])
   let venues=(await get('venues.json'))['categories']
   for(let category of venues) for(let venue of category['categories']) nouns.push(venue['name'])
@@ -34,4 +55,6 @@ export async function loadwords(){
     interpretations.push(...card['meanings']['light'])
     interpretations.push(...card['meanings']['shadow'])
   }
+  await loademoji()
+  loaddetails()
 }

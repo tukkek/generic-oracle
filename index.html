@@ -6,7 +6,7 @@
     <link href="style.css" rel="stylesheet">
     <script type="module">
       import {generate} from './src/generator.js';
-      import {loadwords,adjectives,nouns,adverbs,verbs,interpretations} from './src/words.js';
+      import {loadwords,adjectives,nouns,adverbs,verbs,interpretations,emoji} from './src/words.js';
       window.regenerate=async function(){
         await loadwords()
         generate()
@@ -15,6 +15,7 @@
         document.querySelector('#contentsummary #adverbs').innerHTML=adverbs.length
         document.querySelector('#contentsummary #verbs').innerHTML=verbs.length
         document.querySelector('#contentsummary #interpretations').innerHTML=interpretations.length
+        document.querySelector('#contentsummary #emoji').innerHTML=emoji.length
       }
     </script>
     <template id='detail'>
@@ -33,6 +34,6 @@
       <table id='map'></table>
       <span id='details'></span>
     </div>
-    <div id='contentsummary'>This generator contains <span id='adjectives'></span> adjectives, <span id='nouns'></span> nouns, <span id='adverbs'></span> adverbs, <span id='verbs'></span> verbs and <span id='interpretations'></span> interpretations. <a href='https://github.com/tukkek/generic-oracle' target='_blank'>Read more!</a></div>
+    <div id='contentsummary'>This generator contains <span id='adjectives'></span> adjectives, <span id='nouns'></span> nouns, <span id='adverbs'></span> adverbs, <span id='verbs'></span> verbs, <span id='interpretations'></span> interpretations and <span id='emoji'></span> emoji keywords. <a href='https://github.com/tukkek/generic-oracle' target='_blank'>Read more!</a></div>
   </body>
 </html>

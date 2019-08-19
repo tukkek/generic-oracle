@@ -1,3 +1,7 @@
 Word lists
 ======
 * Corpore (see LICENSE.txt ar the src/words directory)
+
+Emoji list
+======
+* emojilib (https://github.com/muan/emojilib)
