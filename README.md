@@ -4,6 +4,8 @@
 
 **Adblock users: please note that although this tool is 100% ad-free, adblock software may prevent it from operating normally.** Disable your adblock extension or configure it to make an exception for the site's address if the site doesn't load at first.
 
+----
+
 This is a generic, customizable grid-based oracle ("random generator") with a large number of source keywords. Read below for a quick overview of the motivations for creating (and advantages of using) this project over traditional oracles.
 
 A brief introduction to the concept of oracles themselves: "random generators" (like random character generators, dungeon generators, yes/no/but/and oracles) are tools used in the context of writing to provide inspiration while writing a story, module, sourcebook and also in the context of roleplaying games - either for a narrator who needs some help while preparing a game beforehand or during a session when you need to come up with something on the fly but inspiration has either run dry or started to get repetitive. They're also used during solo-roleplaying to simulate the improvising, unpredictable and dynamic role of a real narrator.
