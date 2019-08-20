@@ -55,9 +55,9 @@ function drawcards(){
   }
 }
 
-export function generate(){
+export function generate(interesting=false){
   refresh()
-  let interesting=rolldice(getoption('amount'),getoption('dice'))
+  if(!interesting) interesting=rolldice(getoption('amount'),getoption('dice'))
   if(interesting>rows*columns) interesting=rows*columns
   let occupied=new Set()
   let map=document.querySelector('#map')
