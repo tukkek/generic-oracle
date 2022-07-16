@@ -41,3 +41,10 @@
   font-size:2em;
   vertical-align:middle;
 }
+#format{
+  color:blue;
+  text-shadow:blue .1em .1em .2em;
+}
+#roll input{
+  width:auto;
+}

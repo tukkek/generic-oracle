@@ -1,41 +1,54 @@
-<html>
-  <head>
-    <title>Generic Oracle</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="style.css" rel="stylesheet">
-    <script type="module">
-      import {generate} from './src/generator.js';
-      import {loadwords,adjectives,nouns,adverbs,verbs,interpretations,emoji} from './src/words.js';
-      window.load=async function(){
-        await loadwords()
-        document.querySelector('#contentsummary #adjectives').innerHTML=adjectives.length
-        document.querySelector('#contentsummary #nouns').innerHTML=nouns.length
-        document.querySelector('#contentsummary #adverbs').innerHTML=adverbs.length
-        document.querySelector('#contentsummary #verbs').innerHTML=verbs.length
-        document.querySelector('#contentsummary #interpretations').innerHTML=interpretations.length
-        document.querySelector('#contentsummary #emoji').innerHTML=emoji.length
-        generate()
-      }
-      window.generate=generate
-    </script>
-    <template id='detail'>
-      <div class='detail'>
-        <div class='title'></div>
-        <ul class='description'></ul>
-      </div>
-    </template>
-  </head>
-  <body onload='load();'>
-    <div id='controls'>
-      Generate <input type='number'  value='2' id='amount'>d<input type='number' value='4' id='dice'> elements on a <input type='number' value='4' id='rows'> by <input type='number' value='4' id='columns'> grid.
-      <button id='generate' onclick='generate();'>Generate new</button>
-      <button id='generate' onclick='generate(1);'>Generate one</button>
-    </div>
-    <div>
-      <table id='map'></table>
-      <span id='details'></span>
-    </div>
-    <div id='contentsummary'>This generator contains <span id='adjectives'></span> adjectives, <span id='nouns'></span> nouns, <span id='adverbs'></span> adverbs, <span id='verbs'></span> verbs, <span id='interpretations'></span> interpretations and <span id='emoji'></span> emoji keywords. <a href='https://github.com/tukkek/generic-oracle/blob/master/README.md' target='_blank'>Read more!</a></div>
-  </body>
-</html>
+<title>Generic Oracle</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="style.css" rel="stylesheet">
+
+<template id='detail'>
+  <div class='detail'>
+    <div class='title'></div>
+    <ul class='description'></ul>
+  </div>
+</template>
+<div id='controls'>
+  Generate <input value='2' id='amount'> elements on a <input type='number' value='3' id='rows'> by <input type='number' value='3' id='columns'> grid.
+  <button id='generate' onclick='generate();'>Generate</button>
+  <button id='generate' onclick='generate(1);'>Generate one</button>
+  <button id='help'>Help</button>
+  <span id='roll'>
+    <label><input type='radio' name='roll' value='low'> Low</label>
+    <label><input type='radio' name='roll' value='normal' checked> Normal</label>
+    <label><input type='radio' name='roll' value='high'> High</label>
+  </span>
+</div>
+<div>
+  <table id='map'></table>
+  <span id='details'></span>
+</div>
+<div id='contentsummary'>This generator contains <span id='adjectives'>...</span> adjectives, <span id='nouns'>...</span> nouns, <span id='adverbs'>...</span> adverbs, <span id='verbs'>...</span> verbs, <span id='interpretations'>...</span> interpretations and <span id='emoji'>...</span> emoji keywords. <a href='https://github.com/tukkek/generic-oracle/blob/master/README.md' target='_blank'>Read more!</a></div>
+
+<script type="module">
+  import * as generator from './src/generator.js';
+  import * as words from './src/words.js';
+  import * as help from './src/help.js';
+  
+  const FORMAT=new Intl.NumberFormat()
+  
+  function count(id,array){
+    let n=array.length
+    var order=Math.pow(10,Math.floor(Math.log(n)/Math.log(10)))
+    n=Math.round(n/order)*order
+    n=FORMAT.format(n)
+    document.querySelector('#contentsummary #'+id).textContent='~'+n
+  }
+  
+  await words.loadwords()
+  count('adjectives',words.adjectives)
+  count('nouns',words.nouns)
+  count('adverbs',words.adverbs)
+  count('verbs',words.verbs)
+  count('interpretations',words.interpretations)
+  count('emoji',words.emoji)
+  help.setup()
+  generator.generate()
+  window.generate=generator.generate
+</script>

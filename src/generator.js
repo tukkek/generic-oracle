@@ -1,6 +1,9 @@
 import {roll,rolldice,pick,chancein} from './rpg.js'
 import {adjectives,nouns,adverbs,verbs,details} from './words.js'
 
+const HIGH=document.querySelector('input[value="high"]')
+const LOW=document.querySelector('input[value="low"]')
+
 var rows=false
 var columns=false
 var units=[]
@@ -11,7 +14,9 @@ class Unit{
   constructor(){
     this.title=capitalize(pick(adjectives)+' '+pick(nouns))
     this.details=[]
-    let ndetails=roll(1,4)
+    let ndetails=1
+    while(chancein(2)) ndetails+=1
+    //ndetails=2
     while(this.details.length<ndetails) 
       this.details.push(capitalize(pick(details)))
     let goal=pick(verbs)+' '+pick(nouns)
@@ -55,9 +60,27 @@ function drawcards(){
   }
 }
 
+function getamount(){
+  let a=document.querySelector('#controls #amount').value
+  if(a.indexOf('-')>=0){
+    a=a.split('-').map(a=>Number(a))
+    return roll(a[0],a[1])
+  }
+  if(a.indexOf('d')>=0){
+    a=a.split('d').map(a=>Number(a))
+    console.log(a)
+    return rolldice(Number(a[0]),Number(a[1]))
+  }
+  return Number(a)
+}
+
 export function generate(interesting=false){
   refresh()
-  if(!interesting) interesting=rolldice(getoption('amount'),getoption('dice'))
+  if(!interesting){
+    if(HIGH.checked) interesting=Math.max(getamount(),getamount())
+    else if(LOW.checked) interesting=Math.min(getamount(),getamount())
+    else interesting=getamount()
+  }
   if(interesting>rows*columns) interesting=rows*columns
   let occupied=new Set()
   let map=document.querySelector('#map')
