@@ -30,20 +30,25 @@ function getoption(option){
 }
 
 function refresh(){
-  document.querySelector('#details').innerHTML=''
+  //document.querySelector('#details').innerHTML=''
   rows=getoption('rows')
   columns=getoption('columns')
   let map=document.querySelector('#map');
   map.innerHTML=''
   for(let x=0;x<rows;x++){
     let row=document.createElement('tr')
-    for(let y=0;y<columns;y++) row.appendChild(document.createElement('td'))
+    for(let y=0;y<columns;y++){
+      let td=document.createElement('td')
+      td.innerHTML='&nbsp;';
+      row.appendChild(td)
+    }
     map.appendChild(row)
   }
   units.splice(0);
 }
 
 function drawcards(){
+  return
   let details=document.querySelector('#details')
   let template=document.querySelector('template#detail')
   for(let i=0;i<units.length;i++){

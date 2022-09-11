@@ -3,27 +3,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="style.css" rel="stylesheet">
 
-<template id='detail'>
-  <div class='detail'>
-    <div class='title'></div>
-    <ul class='description'></ul>
-  </div>
-</template>
 <div id='controls'>
-  Generate <input value='2' id='amount'> elements on a <input type='number' value='3' id='rows'> by <input type='number' value='3' id='columns'> grid.
+  Generate <input value='1d4' id='amount'> elements on a <input type='number' value='2' id='rows'> by <input type='number' value='2' id='columns'> grid.
   <button id='generate' onclick='generate();'>Generate</button>
   <button id='generate' onclick='generate(1);'>Generate one</button>
   <button id='help'>Help</button>
   <span id='roll'>
-    <label><input type='radio' name='roll' value='low'> Low</label>
-    <label><input type='radio' name='roll' value='normal' checked> Normal</label>
+    <label><input type='radio' name='roll' value='low' checked> Low</label>
+    <label><input type='radio' name='roll' value='normal'> Normal</label>
     <label><input type='radio' name='roll' value='high'> High</label>
   </span>
 </div>
-<div>
+<!--div-->
   <table id='map'></table>
-  <span id='details'></span>
-</div>
+  <!--template id='detail'>
+    <div class='detail'>
+      <div class='title'></div>
+      <ul class='description'></ul>
+    </div>
+  </template>
+  <span id='details'>
+  </span-->
+<!--/div-->
 <div id='contentsummary'>This generator contains <span id='adjectives'>...</span> adjectives, <span id='nouns'>...</span> nouns, <span id='adverbs'>...</span> adverbs, <span id='verbs'>...</span> verbs, <span id='interpretations'>...</span> interpretations and <span id='emoji'>...</span> emoji keywords. <a href='https://github.com/tukkek/generic-oracle/blob/master/README.md' target='_blank'>Read more!</a></div>
 
 <script type="module">
