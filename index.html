@@ -25,7 +25,7 @@
   <span id='details'>
   </span-->
 <!--/div-->
-<div id='contentsummary'>This generator contains <span id='adjectives'>...</span> adjectives, <span id='nouns'>...</span> nouns, <span id='adverbs'>...</span> adverbs, <span id='verbs'>...</span> verbs, <span id='interpretations'>...</span> interpretations and <span id='emoji'>...</span> emoji keywords. <a href='https://github.com/tukkek/generic-oracle/blob/master/README.md' target='_blank'>Read more!</a></div>
+<div id='contentsummary'>This generator contains <span id='adverbs'>...</span> adverbs,   <span id='verbs'>...</span> verbs, <span id='adjectives'>...</span> adjectives and <span id='nouns'>...</span> nouns. <a href='https://github.com/tukkek/generic-oracle/blob/master/README.md' target='_blank'>Read more</a>!</div>
 
 <script type="module">
   import * as generator from './src/generator.js';
@@ -47,8 +47,6 @@
   count('nouns',words.nouns)
   count('adverbs',words.adverbs)
   count('verbs',words.verbs)
-  count('interpretations',words.interpretations)
-  count('emoji',words.emoji)
   help.setup()
   generator.generate()
   window.generate=generator.generate

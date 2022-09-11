@@ -1,5 +1,5 @@
 import {roll,rolldice,pick,chancein} from './rpg.js'
-import {adjectives,nouns,adverbs,verbs,details} from './words.js'
+import {adjectives,nouns,adverbs,verbs} from './words.js'
 
 const HIGH=document.querySelector('input[value="high"]')
 const LOW=document.querySelector('input[value="low"]')
@@ -12,8 +12,19 @@ function capitalize(s){return s[0].toUpperCase()+s.substring(1).toLowerCase()}
 
 class Unit{
   constructor(){
-    this.title=capitalize(pick(adjectives)+' '+pick(nouns))
-    this.details=[]
+    let stack=[]
+    while(stack.length==0){
+      if(chancein(2)){
+        if(chancein(2)) stack.push(adverbs)
+        stack.push(verbs)
+      }
+      if(chancein(2)){
+        if(chancein(2)) stack.push(adjectives)
+        stack.push(nouns)
+      }
+    }
+    this.title=capitalize(stack.map(s=>pick(s)).join(' '))
+    /*this.details=[]
     let ndetails=1
     while(chancein(2)) ndetails+=1
     //ndetails=2
@@ -21,7 +32,7 @@ class Unit{
       this.details.push(capitalize(pick(details)))
     let goal=pick(verbs)+' '+pick(nouns)
     if(chancein(4)) goal=pick(adverbs)+' '+goal
-    this.details.push('Goal: '+goal.toLowerCase())
+    this.details.push('Goal: '+goal.toLowerCase())*/
   }
 }
 
@@ -47,8 +58,7 @@ function refresh(){
   units.splice(0);
 }
 
-function drawcards(){
-  return
+/*function drawcards(){
   let details=document.querySelector('#details')
   let template=document.querySelector('template#detail')
   for(let i=0;i<units.length;i++){
@@ -63,7 +73,7 @@ function drawcards(){
     }
     details.appendChild(detail)
   }
-}
+}*/
 
 function getamount(){
   let a=document.querySelector('#controls #amount').value
@@ -73,7 +83,6 @@ function getamount(){
   }
   if(a.indexOf('d')>=0){
     a=a.split('d').map(a=>Number(a))
-    console.log(a)
     return rolldice(Number(a[0]),Number(a[1]))
   }
   return Number(a)
@@ -103,5 +112,5 @@ export function generate(interesting=false){
     if (b.title<a.title) return -1
     return 0;
   })
-  drawcards()
+  //drawcards()
 }

@@ -2,33 +2,11 @@ export var adjectives=[]
 export var adverbs=[]
 export var verbs=[]
 export var nouns=[]
-export var interpretations=[]
-export var emoji=[]
-export var details=[]
 
 async function get(file,relative=true){
   if(relative) file='src/words/'+file;
   let json=await fetch(file)
   return await json.json()
-}
-
-async function loademoji(){
-  let emojilib=await get('https://cdn.jsdelivr.net/npm/emojilib@2.4.0/emojis.json',false)
-  for(let e in emojilib){
-    let c=emojilib[e]['char']
-    let keywords=emojilib[e]['keywords']
-    keywords.push(e)
-    for(let k of keywords) {
-      while(k.indexOf('_')>=0) k=k.replace('_',' ')
-      emoji.push(`<span class='emoji'>${c}</span> (${k})`)
-    }
-  }
-}
-
-function loaddetails(){
-  details.push(...adjectives)
-  details.push(...interpretations)
-  details.push(...emoji)
 }
 
 export async function loadwords(){
@@ -51,10 +29,4 @@ export async function loadwords(){
   nouns.push(...(await get('instruments.json'))['instruments'])
   nouns.push(...(await get('monsters.json'))['names'])
   nouns.push(...(await get('objects.json'))['objects'])
-  for(let card of (await get('tarot_interpretations.json'))['tarot_interpretations']){
-    interpretations.push(...card['meanings']['light'])
-    interpretations.push(...card['meanings']['shadow'])
-  }
-  await loademoji()
-  loaddetails()
 }
