@@ -11,27 +11,20 @@ body{
   align-items:center;
 }
 #map td{
-  border:1em solid lightgray;
   text-align:center;
   padding:.5em;
-  color:white;
-  text-shadow:black .1em .1em;
+  color:black;
   font-weight:bold;
   font-size:large;
-  opacity:.8;
-  mix-blend-mode:screen;
+  background-color:lightgray;
 }
 #map{
-  border-collapse:collapse;
   table-layout:fixed;
   height:100%;
   width:80%;
-  background: 
-    linear-gradient(to bottom,white,transparent,black)
-    ,
-    linear-gradient(to right,green,blue,red)
-    ;
-              ;
+  background:
+    linear-gradient(to bottom,white,transparent,black),
+    linear-gradient(to right,blue,red);
 }
 .detail{
   display:inline-block;
